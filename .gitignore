@@ -1,0 +1,11 @@
+
+pthreads_barbearia/src/mutex.c
+pthreads_barbearia/src/output/mutex
+pthreads_barbearia/Makefile
+pthreads_barbearia/include/lib.h
+pthreads_barbearia/.vscode/launch.json
+pthreads_barbearia/.vscode/settings.json
+pthreads_barbearia/.vscode/tasks.json
+pthreads_barbearia/src/output/main
+pthreads_barbearia/src/output/teste
+pthreads_barbearia/src/teste.c
