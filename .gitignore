@@ -9,3 +9,7 @@ pthreads_barbearia/.vscode/tasks.json
 pthreads_barbearia/src/output/main
 pthreads_barbearia/src/output/teste
 pthreads_barbearia/src/teste.c
+pthreads_barbearia/src/output/aaa2
+pthreads_barbearia/src/output/aaa
+pthreads_barbearia/output/teste
+pthreads_barbearia/teste.c
