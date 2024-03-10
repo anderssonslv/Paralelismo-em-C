@@ -73,16 +73,15 @@ int main(int argc, char const *argv[]){
     if (clients_num > 0)
         printf("Clientes começam a chegar...\n"); 
     else printf("Nenhum Cliente apareceu\n");
-    
 
     for (int i = 0; i < BARBERS_NUM; i++){
         barbers_id[i] = i;
-        pthread_create(&barbers_t[i],NULL,barber_func,&barbers_id[i]);
+        pthread_create(&barbers_t[i],NULL,barber_func,&barbers_id[i]); // create(thread, null, )
     }
     
     for (int i = 0; i < clients_num; i++){
         clients_id[i] = i;
-        client_entry();
+        client_entry(); // tempo variado de entrada dos clientes
         pthread_create(&clients_t[i],NULL,client_func,&clients_id[i]);
     }
     
@@ -112,8 +111,8 @@ void *barber_func(void *arg){
     
     while (haircuts + drops < clients_num) {
         printf("Barbeiro [%d] esta dormindo...\n",id);
-        sem_wait(&barber_sem);
-
+        sem_wait(&barber_sem); // thread aguardando - somente libera quando cliente requisitar
+                            // barbeiro está dormindo
         sem_wait(&comb_sem); // Se houver pente continua
         sem_wait(&scissor_sem); // Se houver tesoura continua
 
@@ -165,7 +164,7 @@ void *client_func(void *arg){
         pthread_mutex_lock(&waitchair_num_mut);        
         waitchair_num--;
         pthread_mutex_unlock(&waitchair_num_mut);  
-        sem_post(&barber_sem); // Libera um barbeiro para atende-lo
+        sem_post(&barber_sem); // Libera um barbeiro para atende-lo  - acorda barbeiro
               
         printf("Cliente [%d] aguarda sentado...\n",id);
         sem_wait(&waitchair_sem); // Aguarda na cadeira até o barbeiro atender
